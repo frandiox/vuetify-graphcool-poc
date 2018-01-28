@@ -1,0 +1,15 @@
+.sometitle-logo {
+  color: white;
+  font-size: 26px;
+  line-height: 21px;
+}
+
+.sometitle-logo:before {
+  content: 'some';
+  font-weight: 300;
+}
+
+.sometitle-logo:after {
+  content: 'title';
+  font-weight: 700;
+}
