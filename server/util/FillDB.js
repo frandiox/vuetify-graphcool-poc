@@ -1,13 +1,13 @@
 const path = require('path');
 const getModelTypes = require('./ModelTypes.js');
 const populate = require('./Mutate.js');
-const jsonContent = require('./japanpostmethods_subset.json');
+const jsonContent = require(path.resolve(process.argv[3]));
 
 // jsonContent.length = 500; // TODO
 
 const model = 'Country';
 
-const schemaFile = path.resolve('./types.graphql');
+const schemaFile = path.resolve(process.argv[2]);
 const countryTypes = getModelTypes(schemaFile, model);
 
 
