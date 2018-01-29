@@ -41,7 +41,7 @@ export default {
   },
   data() {
     return {
-      openDrawer: false,
+      openDrawer: true,
     };
   },
 };
