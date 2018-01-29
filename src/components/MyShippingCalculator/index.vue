@@ -8,24 +8,26 @@
     </v-layout>
 
     <transition name="slide-y-transition" mode="out-in">
+      <keep-alive>
 
-      <my-shipping-calculator-form
-        v-if="!showRates || rates.length === 0 || isLoading"
-        key="form"
-        :form-input.sync="formInput"
-        :loading="isLoading"
-        :all-countries="allCountries"
-        @submit="showRates = true"
-      />
+        <my-shipping-calculator-form
+          v-if="!showRates || rates.length === 0 || isLoading"
+          key="form"
+          :form-input.sync="formInput"
+          :loading="isLoading"
+          :all-countries="allCountries"
+          @submit="showRates = true"
+        />
 
-      <my-shipping-calculator-result
-        v-else
-        key="result"
-        :rates="rates"
-        :form-input="formInput"
-        @back="showRates = false"
-      />
+        <my-shipping-calculator-result
+          v-else
+          key="result"
+          :rates="rates"
+          :form-input="formInput"
+          @back="showRates = false"
+        />
 
+      </keep-alive>
     </transition>
 
     <v-snackbar
@@ -90,7 +92,9 @@ export default {
       query() {
         return gql`
           query {
-            allCountries {
+            allCountries (
+              orderBy: countryName_ASC
+            ) {
               countryName
             }
           }
