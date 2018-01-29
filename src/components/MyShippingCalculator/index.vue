@@ -77,11 +77,11 @@ export default {
     },
     maxLWH() {
       const { length, width, height } = this.formInput;
-      return length + width + height;
+      return Math.ceil(length + width + height);
     },
     maxLength() {
       const { length, width, height } = this.formInput;
-      return [length, width, height].sort().shift();
+      return Math.ceil([length, width, height].sort().shift());
     },
   },
 
@@ -102,7 +102,9 @@ export default {
     },
     rates: {
       query() {
-        const { country, weight } = this.formInput;
+        const { country } = this.formInput;
+        const weight = Math.ceil(this.formInput.weight);
+
         return gql`
           query {
             Country(countryName: "${country}") {
